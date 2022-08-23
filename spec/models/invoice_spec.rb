@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
+  # it { is_expected.to belong_to(:user) }
   it { is_expected.to validate_presence_of(:invoice_uuid) }
   it { is_expected.to validate_presence_of(:status) }
   it { is_expected.to validate_presence_of(:emitter_name) }
