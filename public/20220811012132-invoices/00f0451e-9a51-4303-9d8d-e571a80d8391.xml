@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <invoice_uuid>00f0451e-9a51-4303-9d8d-e571a80d8391</invoice_uuid>
+  <status>active</status>
+  <emitter>
+    <name>Ricardo Jorge Barrientos</name>
+    <rfc>UVZ05032502D</rfc>
+  </emitter>
+  <receiver>
+    <name>Luz Vilchis Jacinto</name>
+    <rfc>OKQ020528ZX3</rfc>
+  </receiver>
+  <amount>
+    <!-- eg. 1234 cents = 12.34 -->
+    <cents type="integer">352839</cents>
+    <!-- ISO 4217 -->
+    <currency>LRD</currency>
+  </amount>
+  <emitted_at type="date">2018-10-19</emitted_at>
+  <expires_at type="date">2020-11-28</expires_at>
+  <signed_at type="date">2021-01-24</signed_at>
+  <cfdi_digital_stamp type="text">zzb1x572mtfdwi5nz6r6gvnex9o21otekptzengrvkbqrzenfxivz0ysd7x4d41qhbj5a84toyjimfkqo1t4ir9c5ocwyghc7xtdi4reraqan2xg6t1fct8spy62yv09fstw2ll7awz8znoi1v8in1zl6pt6xh1k4d9txla4gp1m2dtjdt044xmip6m3yzjews9sh9vxmux8cpynezqlp9h5npb2fkx1k1u3wtlu2uepgpdticaenrw2n764thg</cfdi_digital_stamp>
+</hash>
