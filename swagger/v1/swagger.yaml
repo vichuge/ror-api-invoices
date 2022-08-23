@@ -1,0 +1,68 @@
+---
+openapi: 3.0.1
+info:
+  title: "Invoices"
+  version: v1
+paths:
+  "/api/v1/invoices":
+    get:
+      summary: Take invoices list (index)
+      tags:
+      - Invoices
+      parameters: []
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Create a new invoice
+      tags:
+      - Invoices
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice_uuid:
+                  type: string
+                status:
+                  type: string
+                emitter_name:
+                  type: string
+                emitter_rfc:
+                  type: string
+                receiver_name:
+                  type: string
+                receiver_rfc:
+                  type: string
+                amount:
+                  type: integer
+                emitted_at:
+                  format: date
+                expires_at:
+                  format: date
+                signed_at:
+                  format: date
+                cfdi_digital_stamp:
+                  format: date
+              required:
+              - invoice_uuid
+              - status
+              - emitter_name
+              - emitter_rfc
+              - receiver_name
+              - receiver_rfc
+              - amount
+              - emitted_at
+              - expires_at
+              - signed_at
+              - cfdi_digital_stamp
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: "/"
