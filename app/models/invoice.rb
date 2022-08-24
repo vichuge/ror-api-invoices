@@ -10,4 +10,21 @@ class Invoice < ApplicationRecord
   validates :expires_at, presence: true
   validates :signed_at, presence: true
   validates :cfdi_digital_stamp, presence: true
+
+  scope :index_filters, lambda { |params|
+    hash = {}
+    params.each do |key, value|
+      next if value.blank?
+      next if %w[amount_down amount_up].include?(key)
+      next if key == 'issue_date'
+
+      hash[key] = value
+    end
+    hash[:emitted_at] = params[:issue_date] if params[:issue_date].present?
+    if params[:amount_down].present? && params[:amount_up].present?
+      hash[:amount] = params[:amount_down]..params[:amount_up]
+    end
+
+    where(hash).order('created_at')
+  }
 end

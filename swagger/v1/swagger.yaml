@@ -48,7 +48,7 @@ paths:
                 signed_at:
                   format: date
                 cfdi_digital_stamp:
-                  format: date
+                  format: string
               required:
               - invoice_uuid
               - status
