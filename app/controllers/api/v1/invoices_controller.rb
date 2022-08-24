@@ -1,7 +1,7 @@
 module Api
   module V1
     class InvoicesController < ApplicationController
-      before_action :set_invoice, only: :destroy
+      before_action :set_invoice, only: %i[destroy update show]
       # GET /invoices
       def index
         @invoices = Invoice.all
@@ -13,6 +13,19 @@ module Api
         @invoice = Invoice.create(invoice_params)
         if @invoice.save
           render json: InvoiceRepresenter.new(@invoice).as_json, status: :created
+        else
+          render json: @invoice.errors, status: :unprocessable_entity
+        end
+      end
+
+      def show
+        render json: @invoice.as_json
+      end
+
+      # PUT /invoices/:id
+      def update
+        if @invoice.update(invoice_params)
+          render json: InvoiceRepresenter.new(@invoice).as_json
         else
           render json: @invoice.errors, status: :unprocessable_entity
         end
