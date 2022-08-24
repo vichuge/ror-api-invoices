@@ -13,10 +13,9 @@ class Invoice < ApplicationRecord
 
   scope :index_filters, lambda { |params|
     hash = {}
-    params.each do |key, value|
+    params_filter = params.except(:amount_down, :amount_up, :issue_date)
+    params_filter.each do |key, value|
       next if value.blank?
-      next if %w[amount_down amount_up].include?(key)
-      next if key == 'issue_date'
 
       hash[key] = value
     end

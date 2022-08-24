@@ -153,7 +153,7 @@ RSpec.describe 'Invoices', type: :request do
       before { put "/api/v1/invoices/#{invoice_id}", params: { status: 'paid' } }
 
       it 'updates the record' do
-        expect(response.body).not_to be_empty
+        expect(response.body).not_to include("Couldn't find Invoice with 'id'=#{invoice_id}")
       end
 
       it 'returns status code 200' do
@@ -208,6 +208,18 @@ RSpec.describe 'Invoices', type: :request do
 
       it 'returns status code 200' do
         expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when the record does not exist' do
+      before { get "/api/v1/invoices/qr/#{wrong_id}" }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns a not found message' do
+        expect(response.body).to include("Couldn't find Invoice with 'id'=#{wrong_id}")
       end
     end
   end

@@ -4,7 +4,6 @@ class InvoiceRepresenter
   end
 
   def as_json
-    # byebug
     {
       id: invoice.id,
       invoice_uuid: invoice.invoice_uuid,
