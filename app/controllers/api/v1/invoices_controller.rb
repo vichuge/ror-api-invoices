@@ -11,7 +11,7 @@ module Api
                  status: :unprocessable_entity
         else
           @invoices = Invoice.index_filters(filter_params)
-          render json: InvoicesRepresenter.new(@invoices).as_json
+          render json: InvoicesRepresenter.new(@invoices).as_json, status: :ok
         end
       end
 
@@ -39,7 +39,7 @@ module Api
       # PUT /invoices/:id
       def update
         if @invoice.update(invoice_params)
-          render json: InvoiceRepresenter.new(@invoice).as_json
+          render json: InvoiceRepresenter.new(@invoice).as_json, status: :ok
         else
           render json: @invoice.errors, status: :unprocessable_entity
         end

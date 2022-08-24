@@ -2,25 +2,45 @@ require 'rails_helper'
 
 RSpec.describe 'Invoices', type: :request do
   let!(:invoices) { create_list(:invoice, 5) }
-  let!(:invoice_id) { invoices.first.id }
+  let!(:invoice) { invoices.first }
+  let!(:invoice_id) { invoice.id }
+  let!(:wrong_id) { 100_000_000 }
 
-  # Test suite for GET /invoice
-  describe 'GET /invoices' do
-    # make HTTP get request before each example
-    before { get '/api/v1/invoices' }
+  # Test suite for GET api/v1/invoices
+  describe 'GET api/v1/invoices' do
+    context 'when there are no filters' do
+      # make HTTP get request before each example
+      before { get '/api/v1/invoices' }
 
-    it 'returns invoices' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(5)
+      it 'returns invoices' do
+        expect(json).not_to be_empty
+        # 6 because of the total_amount
+        expect(json.size).to eq(6)
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(:ok)
+    context 'when there are filters' do
+      before {
+        get "/api/v1/invoices?status=#{invoice.status}&emitter_name=#{invoice.emitter_name}
+        &receiver_name=#{invoice.receiver_name}&amount_down=999&amount_up=100000001&issue_date=#{invoice.emitted_at}"
+      }
+
+      it 'returns invoices' do
+        expect(json).not_to be_empty
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
-  # Test suite for POST /invoice
-  describe 'POST /invoice' do
+  # Test suite for POST api/v1/invoices
+  describe 'POST api/v1/invoices' do
     let(:invoice_uuid) { FFaker::SSN.ssn }
     let(:status) { 'active' }
     let(:emitter_name) { FFaker::Name.name }
@@ -95,6 +115,99 @@ RSpec.describe 'Invoices', type: :request do
       it 'returns a validation failure message' do
         expect(response.body)
           .to include("can't be blank")
+      end
+    end
+  end
+
+  # Test suite for GET api/v1/invoices/:id
+  describe 'GET api/v1/invoices/:id' do
+    context 'when the record exists' do
+      before { get "/api/v1/invoices/#{invoice_id}" }
+
+      it 'returns the invoice' do
+        expect(json).not_to be_empty
+        expect(json['id']).to eq(invoice_id)
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when the record does not exist' do
+      before { get '/api/v1/invoices/100' }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns a not found message' do
+        expect(response.body).to include('Couldn\'t find Invoice')
+      end
+    end
+  end
+
+  # Test suite for PUT api/v1/invoices/:id
+  describe 'PUT api/v1/invoices/:id' do
+    context 'when the record exists' do
+      before { put "/api/v1/invoices/#{invoice_id}", params: { status: 'paid' } }
+
+      it 'updates the record' do
+        expect(response.body).not_to be_empty
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when the record does not exist' do
+      before { put "/api/v1/invoices/#{wrong_id}", params: { status: 'paid' } }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns a not found message' do
+        expect(response.body).to include("Couldn't find Invoice with 'id'=#{wrong_id}")
+      end
+    end
+  end
+
+  # Test suite for DELETE api/v1/invoices/:id
+  describe 'DELETE api/v1/invoices/:id' do
+    context 'when the record exists' do
+      before { delete "/api/v1/invoices/#{invoice_id}" }
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+
+    context 'when the record does not exist' do
+      before { delete "/api/v1/invoices/#{wrong_id}" }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'returns a not found message' do
+        expect(response.body).to include("Couldn't find Invoice with 'id'=#{wrong_id}")
+      end
+    end
+  end
+
+  describe 'get api/v1/invoices/qr/:id' do
+    context 'when the record exists' do
+      before { get "/api/v1/invoices/qr/#{invoice_id}" }
+
+      it 'returns the invoice' do
+        expect(json).not_to be_empty
+        expect(json['qr_image']).to eq("https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=#{invoices.first.cfdi_digital_stamp}")
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(:ok)
       end
     end
   end
