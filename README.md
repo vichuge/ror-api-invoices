@@ -42,7 +42,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Run tests
 
-- After you have run the application, you can run the tests with this code: `rspec`
+- After you have run the application, you can run the tests with the command `rspec`
 
 ## Open app in browser/postman
 
@@ -56,6 +56,10 @@ To get a local copy up and running follow these simple example steps.
 
 - To upload hundreds of invoices, you can use the taks `rake invoice:upload_invoices`
 
+## Documentation
+
+- Once the server is ready, enter on root (`localhost:3000/`)
+
 ## ✒️ Author
 
 👤 **Victor Pacheco**
@@ -67,7 +71,7 @@ To get a local copy up and running follow these simple example steps.
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
-Feel free to check the [issues page](https://github.com/vichuge/backend-track-app/issues).
+Feel free to check the [issues page](https://github.com/vichuge/ror-api-invoices/issues).
 
 ## Show your support
 
