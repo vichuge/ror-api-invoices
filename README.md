@@ -2,7 +2,7 @@
 
 This app is a take-home assessment for a job interview. The idea is to create an API service to manage invoices. Check the [guidelines](GUIDELINES.md) for more details.
 
-![Capture 1](./images/screenshoot1.png)
+![Capture 1](./docs/screehshoot1.png)
 
 ## API documentation
 
