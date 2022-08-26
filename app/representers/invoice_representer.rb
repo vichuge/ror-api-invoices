@@ -17,7 +17,9 @@ class InvoiceRepresenter
       expires_at: invoice.expires_at,
       signed_at: invoice.signed_at,
       cfdi_digital_stamp: invoice.cfdi_digital_stamp,
-      qr_image: "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=#{@invoice.cfdi_digital_stamp}"
+      qr_image: "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=#{@invoice.cfdi_digital_stamp}",
+      user_id: User.find_by(id: invoice.user_id).username,
+      creator: User.find_by(id: invoice.creator_id).username
     }
   end
 

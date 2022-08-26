@@ -1,7 +1,9 @@
 module Api
   module V1
     class InvoicesController < ApplicationController
+      before_action :authenticate_request!
       before_action :set_invoice, only: %i[destroy update show show_qr]
+      before_action :authenticate_user, only: %i[destroy update show show_qr]
 
       # GET /invoices
       def index
@@ -10,27 +12,31 @@ module Api
           render json: { error: 'User needs to use amount up and down together' },
                  status: :unprocessable_entity
         else
-          @invoices = Invoice.index_filters(filter_params)
+          @invoices = Invoice.index_filters(filter_params, current_user!.id)
           render json: InvoicesRepresenter.new(@invoices).as_json, status: :ok
         end
       end
 
       # POST /invoice
       def create
-        @invoice = Invoice.create(invoice_params)
-        @invoice.emitter_name = @invoice.emitter_name.titleize
-        @invoice.receiver_name = @invoice.receiver_name.titleize
-        if @invoice.save
-          render json: InvoiceRepresenter.new(@invoice).as_json, status: :created
+        if User.find_by(username: params[:user_username]).nil?
+          render json: { error: 'User not found' }, status: :unprocessable_entity
         else
-          render json: @invoice.errors, status: :unprocessable_entity
+          @invoice = Invoice.element_invoice(invoice_params, current_user!.id)
+          if @invoice.save
+            render json: InvoiceRepresenter.new(@invoice).as_json, status: :created
+          else
+            render json: @invoice.errors, status: :unprocessable_entity
+          end
         end
       end
 
+      # GET /invoices/:id
       def show
         render json: InvoiceRepresenter.new(@invoice).as_json
       end
 
+      # GET /invoices/:id/qr
       def show_qr
         url = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=#{@invoice.cfdi_digital_stamp}"
         render json: { qr_image: url }.as_json
@@ -38,7 +44,7 @@ module Api
 
       # PUT /invoices/:id
       def update
-        if @invoice.update(invoice_params)
+        if @invoice.update(invoice_update_params)
           render json: InvoiceRepresenter.new(@invoice).as_json, status: :ok
         else
           render json: @invoice.errors, status: :unprocessable_entity
@@ -55,6 +61,11 @@ module Api
 
       def invoice_params
         params.permit(:invoice_uuid, :status, :emitter_name, :emitter_rfc, :receiver_name, :receiver_rfc, :amount,
+                      :emitted_at, :expires_at, :signed_at, :cfdi_digital_stamp, :user_username)
+      end
+
+      def invoice_update_params
+        params.permit(:invoice_uuid, :status, :emitter_name, :emitter_rfc, :receiver_name, :receiver_rfc, :amount,
                       :emitted_at, :expires_at, :signed_at, :cfdi_digital_stamp)
       end
 
@@ -65,6 +76,10 @@ module Api
 
       def set_invoice
         @invoice = Invoice.find(params[:id])
+      end
+
+      def authenticate_user
+        authenticate_user!(params[:id], current_user!.id)
       end
     end
   end

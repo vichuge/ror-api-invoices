@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :invoice do
+    user { create(:user) }
     invoice_uuid { FFaker::SSN.ssn }
     status { 'active' }
     emitter_name { FFaker::Name.name }
@@ -11,5 +12,6 @@ FactoryBot.define do
     expires_at { FFaker::Time.date.to_s }
     signed_at { FFaker::Time.date.to_s }
     cfdi_digital_stamp { FFaker::Bank.iban }
+    creator_id { user.id }
   end
 end

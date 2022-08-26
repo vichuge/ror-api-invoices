@@ -4,7 +4,7 @@ require:
   - rubocop-performance
 
 Metrics/AbcSize:
-  Max: 27
+  Max: 50
   Exclude:
     - 'spec/support/**/*.rb'
 Metrics/MethodLength:

@@ -4,23 +4,146 @@ info:
   title: "Invoices"
   version: v1
 paths:
+  "api/v1/login":
+    post:
+      summary: Login user on application
+      tags:
+        - Session
+      parameters: []
+      responses:
+        "200":
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+  "api/v1/register":
+    post:
+      summary: Register a new user on application
+      tags:
+        - Session
+      parameters: []
+      responses:
+        "200":
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    password:
+                      type: string
+              required:
+                - user
+                - username
+                - password
+  "api/v1/users":
+    get:
+      summary: Return the users list
+      tags:
+        - Users
+      parameters: []
+      responses:
+        "200":
+          description: OK
   "/api/v1/invoices":
     get:
-      summary: Take invoices list (index)
+      summary: Take invoices list (only invoices created for you and assigned for someone else)
       tags:
-      - Invoices
-      parameters: []
+        - Invoices
+      parameters:
+        - name: invoice_uuid
+          in:
+          description:
+          required: false
+          schema:
+            type: string
+        - name: status
+          in:
+          description:
+          required: false
+          schema:
+            type: string
+        - name: emitter_name
+          in:
+          description:
+          required: false
+          schema:
+            type: string
+        - name: emitter_rfc
+          in:
+          description:
+          required: false
+          schema:
+            type: string
+        - name: receiver_name
+          in:
+          description:
+          required: false
+          schema:
+            type: string
+        - name: receiver_rfc
+          in:
+          description:
+          required: false
+          schema:
+            type: string
+        - name: amount
+          in:
+          description:
+          required: false
+          schema:
+            type: integer
+        - name: emitted_at
+          in:
+          description:
+          required: false
+          schema:
+            type: date
+        - name: expires_at
+          in:
+          description:
+          required: false
+          schema:
+            type: date
+        - name: signed_at
+          in:
+          description:
+          required: false
+          schema:
+            type: date
+        - name: cfdi_digital_stamp
+          in:
+          description:
+          required: false
+          schema:
+            type: string
       responses:
-        '200':
-          description: successful
+        "200":
+          description: OK
     post:
-      summary: Create a new invoice
+      summary: Create a new invoice, add username to assign the invoice to another user (check users list to see al users on app)
       tags:
-      - Invoices
+        - Invoices
       parameters: []
       responses:
-        '200':
-          description: successful
+        "200":
+          description: OK
       requestBody:
         content:
           application/json:
@@ -49,20 +172,85 @@ paths:
                   format: date
                 cfdi_digital_stamp:
                   format: string
+                user_username:
+                  format: string
               required:
-              - invoice_uuid
-              - status
-              - emitter_name
-              - emitter_rfc
-              - receiver_name
-              - receiver_rfc
-              - amount
-              - emitted_at
-              - expires_at
-              - signed_at
-              - cfdi_digital_stamp
+                - invoice_uuid
+                - status
+                - emitter_name
+                - emitter_rfc
+                - receiver_name
+                - receiver_rfc
+                - amount
+                - emitted_at
+                - expires_at
+                - signed_at
+                - cfdi_digital_stamp
+                - user_username
+  "/api/v1/invoices/:id":
+    get:
+      summary: Take invoice element (only if the invoice is created for you or assigned)
+      tags:
+        - Invoices
+      parameters: []
+      responses:
+        "200":
+          description: OK
+    put:
+      summary: Update a created invoice
+      tags:
+        - Invoices
+      parameters: []
+      responses:
+        "200":
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice_uuid:
+                  type: string
+                status:
+                  type: string
+                emitter_name:
+                  type: string
+                emitter_rfc:
+                  type: string
+                receiver_name:
+                  type: string
+                receiver_rfc:
+                  type: string
+                amount:
+                  type: integer
+                emitted_at:
+                  format: date
+                expires_at:
+                  format: date
+                signed_at:
+                  format: date
+                cfdi_digital_stamp:
+                  format: string
+    delete:
+      summary: Delete an invoice
+      tags:
+        - Invoices
+      parameters: []
+      responses:
+        "204":
+          description: No Content
+  "/api/v1/invoices/qr/:id":
+    get:
+      summary: Return the qr for selected invoce
+      tags:
+        - Invoices
+      parameters: []
+      responses:
+        "200":
+          description: OK
 servers:
-- url: http://{defaultHost}
-  variables:
-    defaultHost:
-      default: "/"
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: "/"

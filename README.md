@@ -1,55 +1,61 @@
-# Part II
+# Ruby on rails API Invoices (API service)
 
-This is the Rails starter code for take-home assessment.
+This app is a take-home assessment for a job interview. The idea is to create an API service to manage invoices. Check the [guidelines](GUIDELINES.md) for more details.
 
-## Take-home assessment: Invoices management
+![Capture 1](./images/screenshoot1.png)
 
-### * Project setup
-- Ruby version: 3.1.0
-- PostgreSQL (at least version 9.3 installed)
-- Configuration: You can use any container manager such as Docker, or setup directly in your local.
+## API documentation
 
-### * User stories
-- As an authenticated User, I want to create invoices so that I can add custom invoices.
+One you run the application, the root page (`localhost:3000`) will show the API documentation. You can also check the [API documentation](./swagger/v1/swagger.yaml) file.
 
-- As an authenticated User, I want to edit invoices so that I can correct any invoice data.
+## Tests with RSpec
 
-- As an authenticated User, I want to remove invoices so that I can discard unnecessary invoices.
+This website was tested with [Rspec](https://en.wikipedia.org/wiki/RSpec)
 
-- As an authenticated User, I want to see the list of all the created/uploaded invoices so that I can found invoices easily.
-  + Acceptance criteria:
-    - The user should be able to filter invoices by status, emitter, receiver and amount range
+## 🔧 Built With these features
+- Ruby 3.1.0
+- Rails 6.1.6.1
+- Bundle 2.3.3
+- PostgreSQL 14.2
+- Rubocop gem 1.33.0
+- Rspec gem 3.11
+- Swagger gem 2.5.1
 
-- As an authenticated User, I want to see a list of all the invoices I have received from a provider(emitter)
-  + Acceptance criteria:
-    - The user should be able to filter invoices by issue date (emitted_at)
-    - The user should be able to see the total amount of the filtered list
+## 🛠 Getting Started
+## Install
 
-- As an authenticated User, I want to import a set of XML that contain invoices so that I can see the invoice data in the database.
-  + Acceptance criteria:
-    - The user should be able to upload hundreds of files at a time (extract the ZIP file `public/20220811012132-invoices.zip` to see the XML format and test with that batch of XML files. Feel free to update the XML data)
-    - If you need to create more XML files, after extracting the zip run this task `rake xml:generate_invoice` to generate more XML files within that same extracted directory `public/20220811012132-invoices/`
-    - Hint: take a look at active_support’s `Hash.from_xml`
+To get a local copy up and running follow these simple example steps.
+- Open a terminal
+- Copy this code : ```git clone https://github.com/vichuge/ror-api-invoices.git```
+- And then ```cd ror-api-invoices```
+## Run the application
 
-- As an authenticated User, I want to have an endpoint that renderizes the image of invoice `cfdi_digital_stamp` as QR so that I can read it faster
+- Run the program with this code : ```bundle install```
+- Then run ```rails db:create```, ```rails db:migrate```
+- Or run ```rails db:setup``` to do it all at once
+- now you can run ```rails server``` or ```rails s``` to start the server
+- Stop the program with: "Ctrl + C" (Windows or Linux) or "Command + C"(Apple)
+## Run tests
 
-### * Observations
-- A user is a invoice receiver and is able to upload invoices
-- This Rails app was created for only API.
+- After you have run the application, you can run the tests with this code: ```rspec```
 
-### * Objectives
-- A reasonable architecture. No need to tune performance, but use best practices of...
-  - software design: design principles (SOLID) and design patterns
-  - performance: like paging, avoiding n+1 queries, background processing, etc. where you think it makes sense.
-- Testing, it is very important for us to see that you understand how to test Ruby on Rails code.
-- Well-organized code and following conventions (`rubocop`)
-- The code doesn't need to be perfect, but aim for good readability.
+## Open app in browser
 
-### * Delivery instructions
-- Let us know when you have started. Publish your code on `Github` and share it with the initial commit
-- Write us any question, or doubt by e-mail message.
-- Delivery:
-  - If you implemented API only, use Postman, or any other similar
-  - Optional: use a client app or use Rails to render server/client side
-  - Bonus: put it online. You can use Heroku, or any other similar
-- When you have completed, let us know by e-mail.
+- When the program is running go to your browser.
+- put: localhost:3000/ (this is the default port, here you caan see the API documentation)
+- To create a user, go to: localhost:3000/api/v1/register and follow the API documentation
+- To login, go to: localhost:3000/api/v1/login and follow the API documentation
+- Is preferable to use [postman](https://www.postman.com/) to test the API
+
+## ✒️ Author
+👤 **Victor Pacheco**
+- GitHub: [@vichuge](https://github.com/vichuge)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/victor-pacheco-7946aab2/)
+- Twitter: [@Pachecofloresv](https://twitter.com/Pachecofloresv)
+## 🤝 Contributing
+Contributions, issues and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/vichuge/backend-track-app/issues).
+## Show your support
+Give a ⭐️ if you like this project!
+## 📝 License
+This project is [MIT](./LICENSE) licensed.
