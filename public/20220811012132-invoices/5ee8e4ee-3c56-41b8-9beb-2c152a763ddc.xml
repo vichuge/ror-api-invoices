@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <invoice_uuid>5ee8e4ee-3c56-41b8-9beb-2c152a763ddc</invoice_uuid>
+  <status>active</status>
+  <emitter>
+    <name>Lisette Hoyos Luna</name>
+    <rfc>HMX751106EC3</rfc>
+  </emitter>
+  <receiver>
+    <name>Wendy Georgina Alfaro Cordero</name>
+    <rfc>ÑON780113A03</rfc>
+  </receiver>
+  <amount>
+    <!-- eg. 1234 cents = 12.34 -->
+    <cents type="integer">907602</cents>
+    <!-- ISO 4217 -->
+    <currency>LAK</currency>
+  </amount>
+  <emitted_at type="date">2019-05-05</emitted_at>
+  <expires_at type="date">2020-12-19</expires_at>
+  <signed_at type="date">2018-01-11</signed_at>
+  <cfdi_digital_stamp type="text">tq5qb3eo3bwaucpphwr6ybv8m3mctvzv7pjk21p3a9nugsm0qc3hbg3gw07moeiqj18al2tiiuj5t52vh68cywu2l8x3wd0e140re0d0p4o2uqv2j2kh3epsr9ii9cgqhj630l3g50flk8mgupvsge0nis8srhqqhr816fsll7pejw1b3mt7frca3odk8ev4w5tei7ycmqdeyjkwesit8sdlhwadu0yqv6taxkx5rx98yf0xk71jn1b36dzdxja</cfdi_digital_stamp>
+</hash>

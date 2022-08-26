@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <invoice_uuid>f3310680-4282-4d1e-8c29-7c872a6e8f24</invoice_uuid>
+  <status>active</status>
+  <emitter>
+    <name>Cosme Quintal Fontana</name>
+    <rfc>UJL170914ISC</rfc>
+  </emitter>
+  <receiver>
+    <name>Constanza Brianda Lezama Ibáñez</name>
+    <rfc>CXL8909176PB</rfc>
+  </receiver>
+  <amount>
+    <!-- eg. 1234 cents = 12.34 -->
+    <cents type="integer">799589</cents>
+    <!-- ISO 4217 -->
+    <currency>MYR</currency>
+  </amount>
+  <emitted_at type="date">2022-02-11</emitted_at>
+  <expires_at type="date">2021-02-03</expires_at>
+  <signed_at type="date">2018-02-05</signed_at>
+  <cfdi_digital_stamp type="text">348a4gd6pppwyk8l3hdx946kqzca6yju304o0hiqh9j3fhvhylyzvekn4fnaselnae23nwi9pjywn0bgneswi8yov2v0sj70q8vuka9f2cl0kjtgld1bgv1bg9dl4yc6mysjdsf5uqk9wjawssxb7ezfew10t554356g0qej1u9mzwhytya7k3r1b1eda8bduvi793lere9uurhys333syeigpfbqyxqjwatgw69bhal11tqt463tqvr7b5z5lv</cfdi_digital_stamp>
+</hash>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <invoice_uuid>1d551025-7d8a-4ed8-9d97-ae5f163e87df</invoice_uuid>
+  <status>active</status>
+  <emitter>
+    <name>Jovana Ojeda Mantilla</name>
+    <rfc>EZT161022VYS</rfc>
+  </emitter>
+  <receiver>
+    <name>Marlene Jacinto Mondragón</name>
+    <rfc>PS&amp;0202135XH</rfc>
+  </receiver>
+  <amount>
+    <!-- eg. 1234 cents = 12.34 -->
+    <cents type="integer">82733</cents>
+    <!-- ISO 4217 -->
+    <currency>ZWL</currency>
+  </amount>
+  <emitted_at type="date">2019-09-11</emitted_at>
+  <expires_at type="date">2019-01-25</expires_at>
+  <signed_at type="date">2018-09-27</signed_at>
+  <cfdi_digital_stamp type="text">hri0lt6v0f4plsjr2z4xm6ky6n8o636qrus6jkgl8irki6poyjt68qfbbopw38qk0kumj96rib668hr4cotxqudlndfrn6w0c3957drqz58wumjg0whok79rh27q3hk41aoon2s3j50ftgfz07vs749az0qt6b5tp2xz1qkgolzr0gm6v9ogcwvstdc3vc2x7vitatm9qd3d1c99cke3pdgzw5okmgv4ke7nc27n7oqif86ns3a3xlnd7zyh3j2</cfdi_digital_stamp>
+</hash>

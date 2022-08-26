@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <invoice_uuid>cdf414aa-e69f-4725-adf3-860e13f52d7e</invoice_uuid>
+  <status>active</status>
+  <emitter>
+    <name>Leonel Otero Dorantes</name>
+    <rfc>ELZ800416WYK</rfc>
+  </emitter>
+  <receiver>
+    <name>Rogelio Domínguez Barajas</name>
+    <rfc>BS&amp;110508PRD</rfc>
+  </receiver>
+  <amount>
+    <!-- eg. 1234 cents = 12.34 -->
+    <cents type="integer">489075</cents>
+    <!-- ISO 4217 -->
+    <currency>HTG</currency>
+  </amount>
+  <emitted_at type="date">2021-09-14</emitted_at>
+  <expires_at type="date">2018-11-18</expires_at>
+  <signed_at type="date">2018-08-24</signed_at>
+  <cfdi_digital_stamp type="text">og1co5k0cpwqx9yr2eb0pu9q8fx1irvtfcmkrmrw1py8vy8kqin7ur1spyuoy2umqourdchsblges6g46omlhesrv4qrqse6yusfzo0kfsugtewhm0u21ayf30gkoulwl5ts0st8s7u52573v44ym113rolar0enonlfx4hbdh43qrn3t903pww6rvv2yxfgo6cw6tmhbjuuju6mbnidbnzid9lf91eesz2y79xade34tztze1gkgh05ik2qmda</cfdi_digital_stamp>
+</hash>

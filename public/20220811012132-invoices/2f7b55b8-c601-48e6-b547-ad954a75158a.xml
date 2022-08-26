@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <invoice_uuid>2f7b55b8-c601-48e6-b547-ad954a75158a</invoice_uuid>
+  <status>active</status>
+  <emitter>
+    <name>Ernesto Olivares Pelayo</name>
+    <rfc>&amp;QY710202KQX</rfc>
+  </emitter>
+  <receiver>
+    <name>Belén Zavala Ocampo</name>
+    <rfc>RÑJ980410RX4</rfc>
+  </receiver>
+  <amount>
+    <!-- eg. 1234 cents = 12.34 -->
+    <cents type="integer">819236</cents>
+    <!-- ISO 4217 -->
+    <currency>CNY</currency>
+  </amount>
+  <emitted_at type="date">2018-03-18</emitted_at>
+  <expires_at type="date">2021-03-01</expires_at>
+  <signed_at type="date">2022-08-23</signed_at>
+  <cfdi_digital_stamp type="text">8vwe7y7ei6fzzujz466e07mvkovu8o35xvfzo5jmvt639y1e8osow0f96wny8ckzzugfwsknbk46kebktcf7h6ce233xknl9kgussdxdfowrvvpns6r3gy23f6wmhiaa4o76tn3gidlhblecabzsb0sddgbjzsyfet5a7jyq6oj1enoozkwjm1gav61xzd284rtxunt785mxgnoo61l7ay5kzr2xx2tldiv52aoyzvn84o6wh7glqg05zdzciiy</cfdi_digital_stamp>
+</hash>
